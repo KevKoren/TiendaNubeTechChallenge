@@ -10,9 +10,9 @@ use TiendaNubeTechChallenge\Show;
 use TiendaNubeTechChallenge\Ticket;
 use TiendaNubeTechChallenge\TicketCategory;
 
-require_once( __DIR__ . '/../config.php');
+require_once(__DIR__ . '/../config.php');
 
-require_once( __DIR__ . '/EnhancedTestCase.php');
+require_once(__DIR__ . '/EnhancedTestCase.php');
 
 require_once(SRC_PATH . 'Show.php');
 require_once(SRC_PATH . 'Discount.php');
