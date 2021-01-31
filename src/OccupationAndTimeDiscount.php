@@ -21,7 +21,7 @@ class OccupationAndTimeDiscount extends Discount
 
     private function occupationCondition($ticket): bool
     {
-        $showOccupation = $ticket->getShow()->getOccupation();
+        $showOccupation = $ticket->getShow()->getOccupationPercentage();
 
         $occupationCondition = $showOccupation > self::ATLEAST_OCCUPATION_TRESHOLD_PERCENTAGE;
 
@@ -34,10 +34,11 @@ class OccupationAndTimeDiscount extends Discount
 
         $currentDateTime = new \DateTime();
 
-        $difference = $currentDateTime->diff($currentDateTime);
+        $difference = $currentDateTime->diff($showDate);
+
 
         //TODO Revisar estas funciones
-        $daysBeforeCondition = $difference->d == 1;
+        $daysBeforeCondition = ($difference->invert == 1 and $difference->days == 1);
 
         return $daysBeforeCondition;
     }

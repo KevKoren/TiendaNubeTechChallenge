@@ -14,21 +14,12 @@ class EnhancedTestCase extends TestCase
      * For protected and private functions testing purpose.
      * @Source: https://stackoverflow.com/questions/249664/best-practices-to-test-protected-methods-with-phpunit
      */
-    protected static function getMethod($name): string
+    protected static function getMethod($className, $name): object
     {
-        $class = new ReflectionClass('MyClass');
+        $class = new \ReflectionClass($className);
         $method = $class->getMethod($name);
         $method->setAccessible(true);
         return $method;
-    }
-
-
-    /*
-     * For testing purposes
-     */
-    protected function createTestTicket(int $id, int $ticketSeat, Show $show, TicketCategory $ticketCategory)
-    {
-        return new Ticket($id, $ticketSeat, $ticketCategory, $show);
     }
 
     /*
@@ -63,5 +54,21 @@ class EnhancedTestCase extends TestCase
         }
 
         return $tickets;
+    }
+
+    protected function createRandomTicket(Show $show): Ticket
+    {
+        $id = rand(1, 100);
+        $seat = rand(1,100);
+
+        $categories = [['Diamond', 100], ['Gold', 80.0], ['Silver', 70.0], ['Bronze', 50.0]];
+
+        $category = rand(0,3);
+
+        $ticketCategory = new TicketCategory($categories[$category][0], $categories[$category][1]);
+
+        $ticket = new Ticket($id, $seat, $ticketCategory, $show);
+
+        return $ticket;
     }
 }

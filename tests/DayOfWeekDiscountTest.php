@@ -14,59 +14,50 @@ require_once(__DIR__ . '/../config.php');
 
 require_once(__DIR__ . '/EnhancedTestCase.php');
 
-require_once(SRC_PATH . 'Show.php');
-require_once(SRC_PATH . 'Discount.php');
-require_once(SRC_PATH . 'DayOfWeekDiscount.php');
-require_once(SRC_PATH . 'OccupationAndTimeDiscount.php');
-require_once(SRC_PATH . 'ShoppingCart.php');
-require_once(SRC_PATH . 'Ticket.php');
-require_once(SRC_PATH . 'TicketCategory.php');
-require_once(SRC_PATH . 'TicketStatus.php');
-
 final class DayOfWeekDiscountTest extends EnhancedTestCase
 {
-    private Show $showSunday;
-    private Show $showMonday;
-    private Show $showTuesday;
-    private Show $showWednesday;
-    private Show $showThursday;
-    private Show $showFriday;
-    private Show $showSaturday;
 
-    private array $tickets = array();
     private DayOfWeekDiscount $dayOfWeekDiscount;
 
     protected function setUp(): void
     {
-        $this->showSunday = new Show(new \DateTime('2021-01-10 20:00:00'));
-        $this->showMonday = new Show(new \DateTime('2021-01-11 20:00:00'));
-        $this->showTuesday = new Show(new \DateTime('2021-01-12 20:00:00'));
-        $this->showWednesday = new Show(new \DateTime('2021-01-13 20:00:00'));
-        $this->showThursday = new Show(new \DateTime('2021-01-14 20:00:00'));
-        $this->showFriday = new Show(new \DateTime('2021-01-15 20:00:00'));
-        $this->showSaturday = new Show(new \DateTime('2021-01-16 20:00:00'));
-
-//        $ticketsShow1 = $this->createTestTickets(1, $this->show1);
-//        $this->show1->setTickets($ticketsShow1);
-
-//        $this->tickets = $ticketsShow1;
-
         $this->dayOfWeekDiscount = new DayOfWeekDiscount();
     }
 
-    public function testDayOfWeekDiscountDoesApply(): void
+    /**
+     * @dataProvider dayOfWeekDiscountDoesApplyProvider
+     */
+    public function testDayOfWeekDiscountDoesApply($ticket, $expected, $errDescription): void
     {
-        $show1 = new Show(new \DateTime('2021-01-12 20:00:00'));
-        $show2 = new Show(new \DateTime('2021-01-13 20:00:00'));
-
-
-//
-//        $this->assertTrue($this->dayOfWeekDiscount->doesApply($show1));
-//        $this->assertTrue($this->dayOfWeekDiscount->doesApply($show2));
+        $this->assertEquals($expected, $this->dayOfWeekDiscount->doesApply($ticket), $errDescription);
     }
 
-    public function testDayOfWeekDiscountDoesNotApply(): void
+    public function dayOfWeekDiscountDoesApplyProvider()
     {
+        $showSunday = new Show(new \DateTime('2021-01-10 20:00:00'));
+        $showMonday = new Show(new \DateTime('2021-01-11 20:00:00'));
+        $showTuesday = new Show(new \DateTime('2021-01-12 20:00:00'));
+        $showWednesday = new Show(new \DateTime('2021-01-13 20:00:00'));
+        $showThursday = new Show(new \DateTime('2021-01-14 20:00:00'));
+        $showFriday = new Show(new \DateTime('2021-01-15 20:00:00'));
+        $showSaturday = new Show(new \DateTime('2021-01-16 20:00:00'));
 
+        $ticketSunday = $this->createRandomTicket($showSunday);
+        $ticketMonday = $this->createRandomTicket($showMonday);
+        $ticketTuesday = $this->createRandomTicket($showTuesday);
+        $ticketWednesday = $this->createRandomTicket($showWednesday);
+        $ticketThursday = $this->createRandomTicket($showThursday);
+        $ticketFriday = $this->createRandomTicket($showFriday);
+        $ticketSaturday = $this->createRandomTicket($showSaturday);
+
+        return [
+            [$ticketSunday, False, 'Sunday'],
+            [$ticketMonday, False, 'Monday'],
+            [$ticketTuesday, True, 'Tuesday'],
+            [$ticketWednesday, True, 'Wednesday'],
+            [$ticketThursday, False, 'Thursday'],
+            [$ticketFriday, False, 'Friday'],
+            [$ticketSaturday, False, 'Saturday']
+        ];
     }
 }

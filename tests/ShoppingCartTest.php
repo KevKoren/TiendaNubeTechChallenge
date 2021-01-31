@@ -14,15 +14,6 @@ require_once(__DIR__ . '/../config.php');
 
 require_once(__DIR__ . '/EnhancedTestCase.php');
 
-require_once(SRC_PATH . 'Show.php');
-require_once(SRC_PATH . 'Discount.php');
-require_once(SRC_PATH . 'DayOfWeekDiscount.php');
-require_once(SRC_PATH . 'OccupationAndTimeDiscount.php');
-require_once(SRC_PATH . 'ShoppingCart.php');
-require_once(SRC_PATH . 'Ticket.php');
-require_once(SRC_PATH . 'TicketCategory.php');
-require_once(SRC_PATH . 'TicketStatus.php');
-
 
 final class ShoppingCartTest extends EnhancedTestCase
 {

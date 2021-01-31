@@ -55,7 +55,7 @@ class Show
         $difference = $currentDateTime->diff($this->getDateTime());
 
         //TODO Revisar estas funciones
-        $hoursBeforeCondition = $difference->h >2;
+        $hoursBeforeCondition = ($difference->invert == 1 and $difference->h >2);
 
         return $hoursBeforeCondition;
     }
