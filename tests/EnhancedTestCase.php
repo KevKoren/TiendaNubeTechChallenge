@@ -8,6 +8,9 @@ use TiendaNubeTechChallenge\Show;
 use TiendaNubeTechChallenge\Ticket;
 use TiendaNubeTechChallenge\TicketCategory;
 
+/*
+ * Testing code is also code, I am not totally convinced of the name I chose for this class as I ended up adding some test data creation logic.
+ */
 class EnhancedTestCase extends TestCase
 {
     /*
