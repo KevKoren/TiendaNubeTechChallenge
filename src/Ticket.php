@@ -12,6 +12,9 @@ class Ticket
     private Show $show;
     private int $id;
 
+    /*
+     * Aside from initializing the ticket, it adds itself to the show object.
+     */
     public function __construct(int $id, int $seat, TicketCategory $category, Show $show)
     {
         $this->id = $id;
@@ -19,7 +22,7 @@ class Ticket
         $this->category = $category;
         $this->status = TicketStatus::AVAILABLE;
         $this->show = $show;
-        // Debatable having this kind of secondary effect.
+        // Debatable having this kind of side effects.
         $this->show->addTicket($this);
     }
 
