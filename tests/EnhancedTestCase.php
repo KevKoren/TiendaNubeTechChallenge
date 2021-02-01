@@ -50,8 +50,8 @@ class EnhancedTestCase extends TestCase
         $bronzeTickets = $this->createTestTicketsForCategory($startingId + 30, new TicketCategory('Bronze', 50.00), $show);
 
 
-        // TODO Gotta be careful with array_merge and associative arrays with integer indexes
-        // as array_merge reorders the resulting array starting from 0.
+        // Gotta be careful with array_merge and associative arrays with integer indexes
+        // as array_merge would reorder the resulting array starting at index 0 when integer indexes are given.
         $tickets = $diamondTickets + $goldTickets + $silverTickets + $bronzeTickets;
         return $tickets;
     }
