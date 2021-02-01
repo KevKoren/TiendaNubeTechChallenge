@@ -64,7 +64,7 @@ final class ShoppingCartTest extends EnhancedTestCase
         $this->assertCount(2, $this->shoppingCart->getTickets());
     }
 
-    public function testGetTotalCostApplyingDiscountsWhenNoneIsAppplicable(): void
+    public function testGetTotalCostApplyingDiscounts(): void
     {
         $ticket1 = $this->show1->getTickets()[1];
         $ticket75 = $this->show2->getTickets()[75];
@@ -82,7 +82,7 @@ final class ShoppingCartTest extends EnhancedTestCase
         $this->assertEquals(100.0, round($this->shoppingCart->getTotalCostApplyingDiscounts(), 2));
     }
 
-    public function testGetApplicableDiscountsWhenNoneIsApplicable(): void
+    public function testGetApplicableDiscounts(): void
     {
         $ticket1 = $this->show1->getTickets()[1];
         $ticket75 = $this->show2->getTickets()[75];
