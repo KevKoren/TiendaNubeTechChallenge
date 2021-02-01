@@ -3,7 +3,7 @@
 define('ROOT', __DIR__ . '/');
 define('SRC_PATH', ROOT . 'src/');
 
-// Could have added an autoloader.
+// Could have added an autoloader, I decided to spent more time on tests.
 
 require_once(SRC_PATH . 'Show.php');
 require_once(SRC_PATH . 'Discount.php');
