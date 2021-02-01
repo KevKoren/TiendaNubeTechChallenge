@@ -31,7 +31,7 @@ class Show
         return $this->dateTime;
     }
 
-    public function getOccupationPercent(): float
+    public function getOccupationPercentage(): float
     {
         $capacity = 0;
         $occupation = 0;

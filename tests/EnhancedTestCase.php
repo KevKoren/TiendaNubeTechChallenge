@@ -36,6 +36,8 @@ class EnhancedTestCase extends TestCase
 
     /*
      * For testing purpose, I assume that every show has 10 tickets for each different category.
+     *
+     * Many tests depend on the quantity of tickets this method creates, this is not ideal.
      */
     protected function createTestTickets(int $startingId, Show $show): array
     {
