@@ -25,12 +25,19 @@ final class ShoppingCartTest extends EnhancedTestCase
     private DayOfWeekDiscount $dayOfWeekDiscount;
     private OccupationAndTimeDiscount $occupationAndTimeDiscount;
 
+    /*
+     * When I code this I wasn't aware of PHPUnit Data Providers.
+     */
     protected function setUp(): void
     {
-        $this->show1 = new Show(new \DateTime('2021-01-27 20:00:00'));
+        // Will fail in 2030.
+        $wednesdayInTheFuture = new \DateTime('2030-02-13 20:00:00');
+        $ThursdayInTheFuture = new \DateTime('2030-02-14 20:00:00');
+
+        $this->show1 = new Show($wednesdayInTheFuture);
         $ticketsShow1 = $this->createTestTickets(1, $this->show1);
 
-        $this->show2 = new Show(new \DateTime('2021-01-28 20:00:00'));
+        $this->show2 = new Show($ThursdayInTheFuture);
         $ticketsShow2 = $this->createTestTickets(41, $this->show2);
 
         $this->tickets = $ticketsShow1 + $ticketsShow2;

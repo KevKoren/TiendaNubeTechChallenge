@@ -23,6 +23,18 @@ class EnhancedTestCase extends TestCase
     }
 
     /*
+     * For protected and private properties testing purpose.
+     * @Source: https://www.php.net/manual/es/reflectionproperty.setaccessible.php
+     */
+    protected static function getProperty($className, $name): object
+    {
+        $class = new \ReflectionClass($className);
+        $attribute = $class->getProperty($name);
+        $attribute->setAccessible(true);
+        return $attribute;
+    }
+
+    /*
      * For testing purpose, I assume that every show has 10 tickets for each different category.
      */
     protected function createTestTickets(int $startingId, Show $show): array

@@ -28,7 +28,7 @@ final class OccupationAndTimeDiscountTest extends EnhancedTestCase
     /**
      * @dataProvider daysBeforeConditionDataProvider
      */
-    public function testDaysBeforeCondition($ticket, $expected, $errDescription): void
+    public function testDaysBeforeCondition(Ticket $ticket, bool $expected, string $errDescription): void
     {
         $daysBeforeConditionMethod = Self::getMethod('TiendaNubeTechChallenge\OccupationAndTimeDiscount', 'daysBeforeCondition');
 

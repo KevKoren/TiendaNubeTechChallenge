@@ -19,6 +19,7 @@ class Ticket
         $this->category = $category;
         $this->status = TicketStatus::AVAILABLE;
         $this->show = $show;
+        // Debatable having this kind of secondary effect.
         $this->show->addTicket($this);
     }
 

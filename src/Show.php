@@ -55,7 +55,8 @@ class Show
         $difference = $currentDateTime->diff($this->getDateTime());
 
         //TODO Revisar estas funciones
-        $hoursBeforeCondition = ($difference->invert == 1 and $difference->h >2);
+
+        $hoursBeforeCondition = ($difference->invert == 0 and ($difference->days > 0 or $difference->h > self::TICKETS_SELL_RESTRICTION_BEFORE_SHOWTIME_IN_HOURS));
 
         return $hoursBeforeCondition;
     }

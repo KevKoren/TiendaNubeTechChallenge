@@ -25,14 +25,14 @@ final class DayOfWeekDiscountTest extends EnhancedTestCase
     }
 
     /**
-     * @dataProvider dayOfWeekDiscountDoesApplyProvider
+     * @dataProvider dayOfWeekDiscountDoesApplyDataProvider
      */
-    public function testDayOfWeekDiscountDoesApply($ticket, $expected, $errDescription): void
+    public function testDayOfWeekDiscountDoesApply(Ticket $ticket, bool $expected, string $errDescription): void
     {
         $this->assertEquals($expected, $this->dayOfWeekDiscount->doesApply($ticket), $errDescription);
     }
 
-    public function dayOfWeekDiscountDoesApplyProvider()
+    public function dayOfWeekDiscountDoesApplyDataProvider()
     {
         $showSunday = new Show(new \DateTime('2021-01-10 20:00:00'));
         $showMonday = new Show(new \DateTime('2021-01-11 20:00:00'));
