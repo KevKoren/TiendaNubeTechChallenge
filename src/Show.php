@@ -31,14 +31,14 @@ class Show
         return $this->dateTime;
     }
 
-    public function getOccupationPercentage(): float
+    public function getOccupationPercent(): float
     {
         $capacity = 0;
         $occupation = 0;
 
         foreach($this->tickets as $ticket) {
             $capacity++;
-            if ($ticket->isAvailable()) {
+            if ($ticket->isSold()) {
                 $occupation++;
             }
         }

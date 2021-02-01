@@ -51,6 +51,11 @@ class Ticket
         return $this->status == TicketStatus::AVAILABLE;
     }
 
+    public function isSold(): bool
+    {
+        return $this->status == TicketStatus::SOLD;
+    }
+
     public function reserve(): void
     {
         // Race condition potential.

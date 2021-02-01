@@ -9,7 +9,7 @@ class OccupationAndTimeDiscount extends Discount
     // Se podría hacer configurable.
     public const PERCENTAGE = 10.0;
     public const DESCRIPTION = '10% off as we are almost complete and one day away from the show!';
-    public const MINIMUM_REQUIRED_SHOW_OCCUPATION_PERCENTAGE = 80.0;
+    public const ATLEAST_OCCUPATION_TRESHOLD_PERCENTAGE = 80.0;
     public const DAYS_BEFORE = 1;
 
     public function doesApply(Ticket $ticket): bool
@@ -23,7 +23,7 @@ class OccupationAndTimeDiscount extends Discount
     {
         $showOccupation = $ticket->getShow()->getOccupationPercentage();
 
-        $occupationCondition = $showOccupation > self::MINIMUM_REQUIRED_SHOW_OCCUPATION_PERCENTAGE;
+        $occupationCondition = $showOccupation > self::ATLEAST_OCCUPATION_TRESHOLD_PERCENTAGE;
 
         return $occupationCondition;
     }
