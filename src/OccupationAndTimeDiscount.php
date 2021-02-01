@@ -36,8 +36,6 @@ class OccupationAndTimeDiscount extends Discount
 
         $difference = $currentDateTime->diff($showDate);
 
-
-        //TODO Revisar estas funciones
         $daysBeforeCondition = ($difference->invert == 1 and $difference->days == self::DAYS_BEFORE);
 
         return $daysBeforeCondition;
